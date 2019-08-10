@@ -20,6 +20,8 @@ public:
 private slots:
     void on_actionNew_triggered();
 
+    void on_actionLoad_Journals_triggered();
+
 private:
     Ui::MainWindow *ui;
 
