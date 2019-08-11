@@ -43,21 +43,13 @@ p, li { white-space: pre-wrap; }
       <x>10</x>
       <y>10</y>
       <width>117</width>
-      <height>231</height>
+      <height>541</height>
      </rect>
     </property>
     <property name="title">
      <string>Journals:</string>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
@@ -69,7 +61,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="title">
-     <string>GroupBox</string>
+     <string>Options for current journal:</string>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
