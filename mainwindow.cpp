@@ -15,22 +15,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // If path is set, load existing journals
-    // 1. Read in a txt file, where the folder location is stored
-    QTextStream out(stdout);
-    QFile file("journalLocation.txt");
-    QString journalLocation = "";
-    if(file.open(QIODevice::ReadOnly))
-    {
-        QTextStream in(&file);
-        journalLocation = in.readLine();
-    }
-    else {
-        out << "No Location: " << endl;
-    }
-    file.close();
-
-    out << "Location: " << journalLocation << endl;
 
 
 }
@@ -43,6 +27,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_triggered()
 {
+    // Test
     QMessageBox::warning(
         this,
         tr("Application Name"),
@@ -51,6 +36,7 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionLoad_Journals_triggered()
 {
+    //Test
     // get the home path, to be used to save/load journals location
     QTextStream out(stdout);
     out << "Home Path: " << QDir::homePath() << endl;

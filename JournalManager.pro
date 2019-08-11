@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        journalmanager.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+        journalmanager.h \
         mainwindow.h
 
 FORMS += \
