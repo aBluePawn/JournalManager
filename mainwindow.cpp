@@ -54,14 +54,9 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionLoad_Journals_triggered()
 {
-    //Test
-    // get the home path, to be used to save/load journals location
-    QTextStream out(stdout);
-    out << "Home Path: " << QDir::homePath() << endl;
-    //QDesktopServices::openUrl();
-
-    QFileDialog dialog;
-    dialog.setFileMode(QFileDialog::Directory);
-    QString path = QFileDialog::getExistingDirectory();
-    out << "selected: " << path << endl;
+    // Test
+    // Write some data to the textBrowser
+    //ui->MainWindow->centralWidget->textBrowser->setText("Hello");
+    ui->textEdit->setText("Hello World");
+    ui->textBrowser->setText("Hello World");
 }
