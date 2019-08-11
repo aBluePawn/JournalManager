@@ -25,11 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        helperfunctions.cpp \
         journalmanager.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+        helperfunctions.h \
         journalmanager.h \
         mainwindow.h
 

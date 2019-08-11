@@ -27,11 +27,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_triggered()
 {
-    // Test
-    QMessageBox::warning(
-        this,
-        tr("Application Name"),
-        tr("A warning message.") );
+    // Get folder from setting file
+
+    // If folder doesn't exist, ask user to chose folder
+
+    // If folder exists, create new journal file
+
 }
 
 void MainWindow::on_actionLoad_Journals_triggered()
