@@ -24,8 +24,11 @@ class JournalManager
 {
 public:
     JournalManager();
+    QString Folder();
+    void addJournal(const QString);
 private:
     QString folder;
+    QString settingsFile;
     QVector<QString> savedDetails;
 };
 

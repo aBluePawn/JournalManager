@@ -18,7 +18,7 @@ JournalManager::JournalManager()
     // If path is not set, create a file in the home folder
     // 1. Read in a txt file, where the folder location is stored
 
-    QString settingsFile = QDir::homePath()+ "/journalSettings.txt";
+    settingsFile = QDir::homePath()+ "/journalSettings.txt";
     QFile file(settingsFile);
     if(fileExists(settingsFile))
     {
@@ -35,7 +35,28 @@ JournalManager::JournalManager()
             QString folderName = QDir::homePath()+ "/myJournals/";
             dir.mkdir(folderName);
             stream << folderName << endl;
+            readFromFile(settingsFile, savedDetails);
         }
         file.close();
     }
+    folder = savedDetails[1];
+}
+
+// Return the path stored in settings
+// At the moment this is the home directory, it may be different in the future
+QString JournalManager::Folder()
+{
+    return folder;
+}
+
+// Add a journal name to the list in settings
+void JournalManager::addJournal(const QString newJournalName)
+{
+    savedDetails.push_back(newJournalName);
+    // Sort the list of journals and rewrite the settings file
+
+    // Or just append the new name
+    QVector<QString> name;
+    name.push_back(newJournalName);
+    appendToFile(settingsFile, name);
 }
