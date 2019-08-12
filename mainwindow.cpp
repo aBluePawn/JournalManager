@@ -29,11 +29,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_triggered()
 {
-    QTextStream out(stdout);
     // Get folder from setting file
     QString currentFolder = myJournals.Folder();
     // Get the name from the user
-    out << "The folder is: " << currentFolder << endl;
     bool ok;
     QVector<QString> newJournalName;
       newJournalName.push_back(QInputDialog::getText(this, tr("Enter new journal name"),
@@ -42,13 +40,12 @@ void MainWindow::on_actionNew_triggered()
     if(ok && !newJournalName[0].isEmpty())
     {
         QString fullName = currentFolder+newJournalName[0]+".txt";
-        out << fullName << endl;
         writeToFile(fullName, newJournalName );
         // Update the settings file
         // Method 1: read the existing files from the folder
 
         // Method 2: just add the new name to the settings file
-        myJournals.addJournal(fullName);
+        myJournals.addJournal(newJournalName[0]);
     }
 }
 
@@ -57,6 +54,8 @@ void MainWindow::on_actionLoad_Journals_triggered()
     // Test
     // Write some data to the textBrowser
     //ui->MainWindow->centralWidget->textBrowser->setText("Hello");
+    QString existingJournals = myJournals.Journals();
     ui->textEdit->setText("Hello World");
-    ui->textBrowser->setText("Hello World");
+
+    ui->textBrowser->setText(existingJournals);
 }

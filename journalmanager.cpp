@@ -49,14 +49,31 @@ QString JournalManager::Folder()
     return folder;
 }
 
+// Return a string with all the names of existing journals
+QString JournalManager::Journals()
+{
+    QString journals;
+    if(savedDetails.size()>2)
+    {
+        for(int i = 2; i<savedDetails.size(); i++)
+        {
+            journals += savedDetails[i] + "\n";
+        }
+    }
+    return journals;
+}
+
 // Add a journal name to the list in settings
 void JournalManager::addJournal(const QString newJournalName)
 {
-    savedDetails.push_back(newJournalName);
+
     // Sort the list of journals and rewrite the settings file
 
     // Or just append the new name
     QVector<QString> name;
-    name.push_back(newJournalName);
+    QString linkName = "<a href>" + newJournalName + "</a><br>";
+    savedDetails.push_back(linkName);
+    name.push_back(linkName);
+
     appendToFile(settingsFile, name);
 }
