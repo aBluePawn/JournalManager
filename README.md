@@ -9,6 +9,8 @@ I am creating this app to make it easier to add entries to different journals wi
 The app will do that for me: all I have to do now is to select a journal from the left panel, and type an entry in the right hand panel.
 
 ## Functionality
+![GUI layout](GUI_layout.png)
+
 At the moment, upon loading the app, a new folder is created inside the Home folder, called myJournals.
 
 The user can choose to create a New journal or to Load an existing one.
