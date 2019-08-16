@@ -57,5 +57,5 @@ void MainWindow::on_actionLoad_Journals_triggered()
     QString existingJournals = myJournals.Journals();
     ui->textEdit->setText("Hello World");
 
-    ui->textBrowser->setText(existingJournals);
+    //ui->textBrowser->setText(existingJournals);
 }
