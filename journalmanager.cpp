@@ -71,9 +71,9 @@ void JournalManager::addJournal(const QString newJournalName)
 
     // Or just append the new name
     QVector<QString> name;
-    QString linkName = "<a href>" + newJournalName + "</a><br>";
-    savedDetails.push_back(linkName);
-    name.push_back(linkName);
+    QString journalName = newJournalName;
+    savedDetails.push_back(journalName);
+    name.push_back(journalName);
 
     appendToFile(settingsFile, name);
 }

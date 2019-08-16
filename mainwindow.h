@@ -12,6 +12,7 @@
 #include <QMainWindow>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QPushButton>
 #include "journalmanager.h"
 
 
@@ -26,6 +27,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    // Associate a string with a QPushButton
+    // TO DO: implement this function in a more efficient way
+    //bool findButton(const QString&, QPushButton*);
 
 private slots:
     void on_actionNew_triggered();

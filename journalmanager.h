@@ -25,7 +25,7 @@ class JournalManager
 public:
     JournalManager();
     QString Folder();
-    QString Journals();
+    QString Journals(); // returns a QString with the name of the existing journals
     void addJournal(const QString);
 private:
     QString folder;

@@ -7,6 +7,7 @@
 #include <QInputDialog>
 #include <QDir>
 
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "helperfunctions.h"
@@ -16,9 +17,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -52,10 +50,46 @@ void MainWindow::on_actionNew_triggered()
 void MainWindow::on_actionLoad_Journals_triggered()
 {
     // Test
-    // Write some data to the textBrowser
-    //ui->MainWindow->centralWidget->textBrowser->setText("Hello");
-    QString existingJournals = myJournals.Journals();
-    ui->textEdit->setText("Hello World");
 
-    //ui->textBrowser->setText(existingJournals);
+    QString existingJournals = myJournals.Journals();
+    //QTextStream out(stdout);
+    //out << existingJournals << endl;
+
+    QStringList list = existingJournals.split(QRegExp("[\n]+"), QString::SkipEmptyParts);
+
+
+    for(int i=list.size(); i<5; i++) // for now use only 5 journals
+    {
+        list.append("empty");
+    }
+
+    // Hardcoding for now, TODO improve this section
+    ui->pushButton_1->setText(list.at(0));
+    ui->pushButton_2->setText(list.at(1));
+    ui->pushButton_3->setText(list.at(2));
+    ui->pushButton_4->setText(list.at(3));
+    ui->pushButton_5->setText(list.at(4));
+
+
+
+
+    // Test: Write some data to the text Edit field
+    ui->textEdit->setText("Hello World");
 }
+
+/*
+// https://forum.qt.io/topic/88768/how-to-use-string-as-ui-qpushbutton-typecast
+bool MainWindow::findButton(const QString &buttonName, QPushButton* foundButton)
+{
+    QPushButton *button = ui->findChild<QPushButton *>("buttonName");
+    if(button)
+    {
+        foundButton = button;
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}
+*/
