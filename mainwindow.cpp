@@ -34,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         connect(buttons[i], SIGNAL(clicked()), this, SLOT(selectJournal()));
     }
+
+    // Add a placeholder on the textEdit area for new entry
+    ui->textEdit_2->setPlaceholderText("Load an existing Journal or create a New one.");
 }
 
 MainWindow::~MainWindow()
@@ -46,6 +49,8 @@ void MainWindow::selectJournal()
 {
     QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
     ui->textEdit->setText(buttonSender->text());
+    ui->current_journal->setTitle("Current Journal: " + buttonSender->text());
+    ui->textEdit_2->setPlaceholderText("Enter text for your new entry here, then click Save");
 }
 
 void MainWindow::on_actionNew_triggered()
@@ -90,9 +95,7 @@ void MainWindow::on_actionLoad_Journals_triggered()
     {
         buttons[i]->setText(list.at(i));
     }
-
-    // Test: Write some data to the text Edit field
-    ui->textEdit_2->setText("Hello World");
+    ui->textEdit_2->setPlaceholderText("Select an existing Journal or create a New one.");
 }
 
 /*
@@ -111,3 +114,17 @@ bool MainWindow::findButton(const QString &buttonName, QPushButton* foundButton)
 
 }
 */
+
+void MainWindow::on_save_entry_clicked()
+{
+    QString entry = ui->textEdit_2->toPlainText();
+    QString currentJournal = ui->current_journal->title();
+    currentJournal = currentJournal.right(currentJournal.length()-17); // 17 is the length of "Current Journal:"
+    currentJournal = myJournals.Folder()+currentJournal + ".txt";
+    QVector<QString> newEntry;
+    newEntry.push_back(entry);
+    appendToFile(currentJournal , newEntry);
+
+    ui->textEdit_2->setText("");
+    ui->textEdit_2->setPlaceholderText("Entry saved! Enter text for your new entry here, then click Save");
+}

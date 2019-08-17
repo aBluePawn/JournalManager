@@ -37,6 +37,9 @@ public slots:
     void on_actionLoad_Journals_triggered();
     void selectJournal();
 
+private slots:
+    void on_save_entry_clicked();
+
 private:
     Ui::MainWindow *ui;
     JournalManager myJournals;
