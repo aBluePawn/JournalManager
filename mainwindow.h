@@ -36,6 +36,7 @@ public slots:
     void on_actionNew_triggered();
     void on_actionLoad_Journals_triggered();
     void selectJournal();
+    void displayJournal(QString);
 
 private slots:
     void on_save_entry_clicked();

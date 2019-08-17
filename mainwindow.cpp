@@ -50,7 +50,26 @@ void MainWindow::selectJournal()
     QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
     ui->textEdit->setText(buttonSender->text());
     ui->current_journal->setTitle("Current Journal: " + buttonSender->text());
+
+    displayJournal(buttonSender->text());
+
+
+
     ui->textEdit_2->setPlaceholderText("Enter text for your new entry here, then click Save");
+}
+
+void MainWindow::displayJournal(QString jurnalName)
+{
+    // Read the content of the selected journal
+    QString fullName = myJournals.Folder() + jurnalName + ".txt";
+    QVector<QString> content;
+    readFromFile(fullName, content);
+    QString strContent;
+    for(int i=0; i<content.size(); i++)
+    {
+        strContent = strContent + content[i] + "\n";
+    }
+    ui->textEdit->setText(strContent);
 }
 
 void MainWindow::on_actionNew_triggered()
@@ -120,11 +139,15 @@ void MainWindow::on_save_entry_clicked()
     QString entry = ui->textEdit_2->toPlainText();
     QString currentJournal = ui->current_journal->title();
     currentJournal = currentJournal.right(currentJournal.length()-17); // 17 is the length of "Current Journal:"
-    currentJournal = myJournals.Folder()+currentJournal + ".txt";
+    QString journalFullPath = myJournals.Folder()+currentJournal + ".txt";
     QVector<QString> newEntry;
     newEntry.push_back(entry);
-    appendToFile(currentJournal , newEntry);
+    appendToFile(journalFullPath , newEntry);
 
+    // Display the updated content
+    displayJournal(currentJournal);
+
+    // Reset the entry area
     ui->textEdit_2->setText("");
     ui->textEdit_2->setPlaceholderText("Entry saved! Enter text for your new entry here, then click Save");
 }
