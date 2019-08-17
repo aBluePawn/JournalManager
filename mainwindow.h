@@ -32,14 +32,15 @@ public:
     // TO DO: implement this function in a more efficient way
     //bool findButton(const QString&, QPushButton*);
 
-private slots:
+public slots:
     void on_actionNew_triggered();
-
     void on_actionLoad_Journals_triggered();
+    void selectJournal();
 
 private:
     Ui::MainWindow *ui;
     JournalManager myJournals;
+    QPushButton * buttons[5];
 };
 
 #endif // MAINWINDOW_H

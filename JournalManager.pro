@@ -26,12 +26,14 @@ CONFIG += c++11
 
 SOURCES += \
         helperfunctions.cpp \
+        journal.cpp \
         journalmanager.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
         helperfunctions.h \
+        journal.h \
         journalmanager.h \
         mainwindow.h
 

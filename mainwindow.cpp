@@ -7,7 +7,6 @@
 #include <QInputDialog>
 #include <QDir>
 
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "helperfunctions.h"
@@ -17,6 +16,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    buttons[0] = ui->pushButton_1;
+    buttons[1] = ui->pushButton_2;
+    buttons[2] = ui->pushButton_3;
+    buttons[3] = ui->pushButton_4;
+    buttons[4] = ui->pushButton_5;
+
+    /*
+     *  use one private slot to connect the existing journals buttons
+     * The sender() approach, see
+     * https://doc.qt.io/archives/qq/qq10-signalmapper.html
+     * Currently using 5 buttons
+    */
+
+    for (int i=0; i<5; i++)
+    {
+        connect(buttons[i], SIGNAL(clicked()), this, SLOT(selectJournal()));
+    }
 }
 
 MainWindow::~MainWindow()
@@ -24,6 +41,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// slot for the existing journals buttons
+void MainWindow::selectJournal()
+{
+    QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
+    ui->textEdit->setText(buttonSender->text());
+}
 
 void MainWindow::on_actionNew_triggered()
 {
@@ -63,18 +86,13 @@ void MainWindow::on_actionLoad_Journals_triggered()
         list.append("empty");
     }
 
-    // Hardcoding for now, TODO improve this section
-    ui->pushButton_1->setText(list.at(0));
-    ui->pushButton_2->setText(list.at(1));
-    ui->pushButton_3->setText(list.at(2));
-    ui->pushButton_4->setText(list.at(3));
-    ui->pushButton_5->setText(list.at(4));
-
-
-
+    for(int i=0; i<5; i++)
+    {
+        buttons[i]->setText(list.at(i));
+    }
 
     // Test: Write some data to the text Edit field
-    ui->textEdit->setText("Hello World");
+    ui->textEdit_2->setText("Hello World");
 }
 
 /*
