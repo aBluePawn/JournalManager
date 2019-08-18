@@ -29,12 +29,10 @@ MainWindow::MainWindow(QWidget *parent) :
      * https://doc.qt.io/archives/qq/qq10-signalmapper.html
      * Currently using 5 buttons
     */
-
     for (int i=0; i<5; i++)
     {
         connect(buttons[i], SIGNAL(clicked()), this, SLOT(selectJournal()));
     }
-
     // Add a placeholder on the textEdit area for new entry
     ui->textEdit_2->setPlaceholderText("Load an existing Journal or create a New one.");
 }
@@ -53,9 +51,9 @@ void MainWindow::selectJournal()
 
     displayJournal(buttonSender->text());
 
-
-
     ui->textEdit_2->setPlaceholderText("Enter text for your new entry here, then click Save");
+    // Enalble the Save button
+    ui->save_entry->setEnabled(true);
 }
 
 void MainWindow::displayJournal(QString jurnalName)
@@ -96,43 +94,23 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionLoad_Journals_triggered()
 {
-    // Test
-
     QString existingJournals = myJournals.Journals();
-    //QTextStream out(stdout);
-    //out << existingJournals << endl;
-
     QStringList list = existingJournals.split(QRegExp("[\n]+"), QString::SkipEmptyParts);
 
-
+    for(int i=0; i<list.size() && i<5; i++) // 5 is the # of journals available to display at the moment
+    {
+        buttons[i]->setText(list.at(i));
+        buttons[i]->setEnabled(true);
+    }
+    /*
     for(int i=list.size(); i<5; i++) // for now use only 5 journals
     {
         list.append("empty");
-    }
-
-    for(int i=0; i<5; i++)
-    {
         buttons[i]->setText(list.at(i));
     }
+    */
     ui->textEdit_2->setPlaceholderText("Select an existing Journal or create a New one.");
 }
-
-/*
-// https://forum.qt.io/topic/88768/how-to-use-string-as-ui-qpushbutton-typecast
-bool MainWindow::findButton(const QString &buttonName, QPushButton* foundButton)
-{
-    QPushButton *button = ui->findChild<QPushButton *>("buttonName");
-    if(button)
-    {
-        foundButton = button;
-        return true;
-    }
-    else {
-        return false;
-    }
-
-}
-*/
 
 void MainWindow::on_save_entry_clicked()
 {
