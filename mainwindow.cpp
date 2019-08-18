@@ -79,6 +79,7 @@ void MainWindow::on_actionNew_triggered()
     QVector<QString> newJournalName;
       newJournalName.push_back(QInputDialog::getText(this, tr("Enter new journal name"),
                                                    tr("Name"), QLineEdit::Normal, "new_journal", &ok));
+    QMessageBox msgBox;
     // Create a new file in that folder
     if(ok && !newJournalName[0].isEmpty())
     {
@@ -89,7 +90,13 @@ void MainWindow::on_actionNew_triggered()
 
         // Method 2: just add the new name to the settings file
         myJournals.addJournal(newJournalName[0]);
+        msgBox.setText("Journal " + newJournalName[0] + " created.");
     }
+    else
+    {
+        msgBox.setText("The journal name cannot be empty, please try again.");
+    }
+    msgBox.exec();
 }
 
 void MainWindow::on_actionLoad_Journals_triggered()
